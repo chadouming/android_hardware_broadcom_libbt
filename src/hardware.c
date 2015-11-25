@@ -520,6 +520,8 @@ static uint8_t hw_config_findpatch(char *p_chip_id_str)
             /* Check if filename starts with chip-id name */
             int cmp;
 
+            p_chip_id_str = "bcm";
+
             cmp = hw_strncmp(dp->d_name, p_chip_id_str, strlen(p_chip_id_str));
             if (cmp == 0)
             {
