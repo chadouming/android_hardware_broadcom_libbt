@@ -491,6 +491,7 @@ static uint8_t hw_config_findpatch(char *p_chip_id_str)
     struct dirent *dp;
     int filenamelen;
     uint8_t retval = FALSE;
+    char *anyname = "bcm";
 
     BTHWDBG("Target name = [%s]", p_chip_id_str);
 
@@ -520,9 +521,7 @@ static uint8_t hw_config_findpatch(char *p_chip_id_str)
             /* Check if filename starts with chip-id name */
             int cmp;
 
-            p_chip_id_str = "bcm";
-
-            cmp = hw_strncmp(dp->d_name, p_chip_id_str, strlen(p_chip_id_str));
+            cmp = hw_strncmp(dp->d_name, anyname, strlen(anyname));
             if (cmp == 0)
             {
 #ifdef SAMSUNG_BLUETOOTH
