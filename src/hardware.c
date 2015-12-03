@@ -521,8 +521,16 @@ static uint8_t hw_config_findpatch(char *p_chip_id_str)
         {
             /* Check if filename starts with chip-id name */
             int cmp;
-
+#ifdef BCM_4356
+            /* Device like Nexus 6 and HTC one M9 have
+             * BCM 4356 chip yet, return bcm4354 when
+             * firmware is probed. Only look for "bcm435"
+             * when we have a device with bcm4356 chip.
+             */
+            cmp = hw_strncmp(dp->d_name, p_chip_id_str, 6);
+#else
             cmp = hw_strncmp(dp->d_name, p_chip_id_str, strlen(p_chip_id_str));
+#endif
             if (cmp == 0)
             {
 #ifdef SAMSUNG_BLUETOOTH
